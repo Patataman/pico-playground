@@ -9,7 +9,10 @@ uart = UART(0, baudrate=115200, tx=Pin(0), rx=Pin(1))
 
 def rcv_uart():
     while True:
-        rxData=str(uart.read(1).decode("utf-8"))
+        rxData = b''
+        while uart.any() > 0:
+            rxData += uart.read(1)
+        rxData = rxData.decode("utf-8")
         print(rxData, end='')
 
 _thread.start_new_thread(rcv_uart, ())
