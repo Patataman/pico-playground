@@ -1,4 +1,4 @@
-""" Change the status of the led when a button is pressed
+""" Send data to Windows when a button is pressed
 """
 
 from machine import Pin
@@ -13,9 +13,10 @@ def alter_led(inst):
     if time.ticks_diff(time.ticks_ms(), DELAY) < 500:
         return
     
-    print(inst.value)
+    # print(inst.value)
     LED.toggle()
-    print("Press button works!")
+    # print("Press button works!")
+    print("l")
     DELAY = time.ticks_ms()
 
 but = Pin(0, Pin.IN, Pin.PULL_UP)
